@@ -25,7 +25,7 @@ https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=
     */
 
     private static final int PAGES = 10;
-    private static final String API_KEY = "XXXXXXXXX";
+    private static final String API_KEY = "XXXXXXXX";
     private static final String BASE_URL = "https://api.nasa.gov/mars-photos/api/v1/rovers/";
 
 
@@ -58,8 +58,8 @@ https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=
         try {
             //conexio a a la api
             String JsonResponse = HttpUtils.get(url);
-            ArrayList<Photo> list = processJson(JsonResponse);
-            photos.addAll(list);
+            //ArrayList<Photo> list = processJson(JsonResponse);
+            //photos.addAll(list);
             return processJson(JsonResponse);
 
         } catch (IOException e) {
