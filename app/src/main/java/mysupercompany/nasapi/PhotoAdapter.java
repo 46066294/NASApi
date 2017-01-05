@@ -41,7 +41,7 @@ public class PhotoAdapter extends ArrayAdapter<Photo>{
         TextView tvLandingDate = (TextView) convertView.findViewById(R.id.landingDate);
         TextView tvMaxDate = (TextView) convertView.findViewById(R.id.maxDate);
         TextView tvMaxSol = (TextView) convertView.findViewById(R.id.maxSol);
-        TextView tvPage = (TextView) convertView.findViewById(R.id.page);
+        //TextView tvPage = (TextView) convertView.findViewById(R.id.page);
         TextView tvTotalPhotos = (TextView) convertView.findViewById(R.id.totalPhotos);
         ImageView imageView = (ImageView) convertView.findViewById(R.id.imageView);
 

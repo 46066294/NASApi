@@ -72,6 +72,7 @@ public class SuperFragment extends Fragment {
 
         //Settings
         if (id == R.id.action_settings) {
+
             return true;
         }
 
@@ -119,7 +120,7 @@ public class SuperFragment extends Fragment {
 
             //DataAccesObject dao = new DataAccesObject();
             Log.d("DEBUG", "AAAAAAAAAAAAAAAAAAAA");
-            ArrayList<Photo> result = DataAccesObject.getPhotos("curiosity", "1000", "navcam", "10");
+            ArrayList<Photo> result = DataAccesObject.getPhotos("Opportunity", "800", "navcam", "24");
 
             Log.d("DEBUG", result != null ? result.toString() : null);
 
