@@ -31,11 +31,11 @@ public class Photo implements Serializable{
         this.launchDate = launchDate;
     }
 
-    public Integer getId() {
+    public Integer getRoverId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setRoverId(Integer id) {
         this.id = id;
     }
 

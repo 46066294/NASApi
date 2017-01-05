@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity
         //Intent i = new Intent(this, SuperFragment.class);
         //startActivity(i);
 
-
         /*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

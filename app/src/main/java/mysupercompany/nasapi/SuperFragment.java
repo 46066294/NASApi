@@ -23,8 +23,8 @@ import java.util.ArrayList;
 
 public class SuperFragment extends Fragment {
 
-    private ArrayList<String> items;
-    private ArrayAdapter<String> adapter;
+    private ArrayList<Photo> items;
+    private PhotoAdapter adapter;
 
     public SuperFragment() {
         // Required empty public constructor
@@ -40,14 +40,15 @@ public class SuperFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_super, container, false);
         ListView lvPhoto = (ListView) view.findViewById(R.id.lv_photos);
 
         items = new ArrayList<>();
-        adapter = new ArrayAdapter<>(
+        adapter = new PhotoAdapter(
                 getContext(),
                 R.layout.lv_photos_row,
-                R.id.rover,
+                //R.id.rover,
                 items
         );
         lvPhoto.setAdapter(adapter);
@@ -96,7 +97,7 @@ public class SuperFragment extends Fragment {
         protected void onPostExecute(ArrayList<Photo> photos) {
             adapter.clear();
             for (Photo photo : photos){
-                adapter.add(photo.getRoverName());
+                adapter.add(photo);
             }
         }
 

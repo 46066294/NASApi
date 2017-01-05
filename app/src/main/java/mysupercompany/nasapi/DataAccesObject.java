@@ -83,7 +83,7 @@ https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=
 
                 Photo photo = new Photo();
                 //generic
-                photo.setId(jsonOnePhoto.getInt("id"));
+                photo.setRoverId(jsonOnePhoto.getInt("id"));
                 photo.setSol(jsonOnePhoto.getInt("sol"));
                 //photo.setPage(jsonOnePhoto.getInt("page"));
                 photo.setImageUrl(jsonOnePhoto.getString("img_src"));
