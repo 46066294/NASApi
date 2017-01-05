@@ -25,7 +25,7 @@ https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=
     */
 
     private static final int PAGES = 10;
-    private static final String API_KEY = "XXXXXXXXXXXX";
+    private static final String API_KEY = "XXXXXXXXX";
     private static final String BASE_URL = "https://api.nasa.gov/mars-photos/api/v1/rovers/";
 
 
@@ -78,30 +78,30 @@ https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=
 
             for (int i = 0; i < jsonPhotos.length(); i++) {
                 JSONObject jsonOnePhoto = jsonPhotos.getJSONObject(i);
-                JSONArray jsonRover = jsonOnePhoto.getJSONArray("rover");
-                JSONArray jsonCamera = jsonOnePhoto.getJSONArray("camera");
+                JSONObject jsonRover = jsonOnePhoto.getJSONObject("rover");
+                JSONObject jsonCamera = jsonOnePhoto.getJSONObject("camera");
 
                 Photo photo = new Photo();
                 //generic
                 photo.setId(jsonOnePhoto.getInt("id"));
                 photo.setSol(jsonOnePhoto.getInt("sol"));
-                photo.setPage(jsonOnePhoto.getInt("page"));
+                //photo.setPage(jsonOnePhoto.getInt("page"));
                 photo.setImageUrl(jsonOnePhoto.getString("img_src"));
 
                 //"rover":{}
                 for(int j = 0; j < jsonRover.length(); j++){
-                    photo.setTotalPhotos(jsonRover.getInt(Integer.parseInt("total_photos")));
-                    photo.setMaxSol(jsonRover.getInt(Integer.parseInt("max_sol")));
-                    photo.setMaxDate(jsonRover.getString(Integer.parseInt("max_date")));
-                    photo.setStatus(jsonRover.getString(Integer.parseInt("status")));
-                    photo.setRoverName(jsonRover.getString(Integer.parseInt("name")));
-                    photo.setLaunchDate(jsonRover.getString(Integer.parseInt("launch_date")));
-                    photo.setLandingDate(jsonRover.getString(Integer.parseInt("landing_date")));
+                    photo.setTotalPhotos(jsonRover.getInt("total_photos"));
+                    photo.setMaxSol(jsonRover.getInt("max_sol"));
+                    photo.setMaxDate(jsonRover.getString("max_date"));
+                    photo.setStatus(jsonRover.getString("status"));
+                    photo.setRoverName(jsonRover.getString("name"));
+                    photo.setLaunchDate(jsonRover.getString("launch_date"));
+                    photo.setLandingDate(jsonRover.getString("landing_date"));
                 }
 
                 //"camera":{}
                 for(int j = 0; j < jsonCamera.length(); j++){
-                    photo.setRoverCam(jsonCamera.getString(Integer.parseInt("name")));
+                    photo.setRoverCam(jsonCamera.getString("name"));
                 }
 
                 photos.add(photo);

@@ -1,10 +1,10 @@
 package mysupercompany.nasapi;
 
-import android.content.SharedPreferences;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -18,15 +18,17 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.Set;
 
 
-public class MainActivityFragment extends Fragment {
+
+public class SuperFragment extends Fragment {
 
     private ArrayList<String> items;
     private ArrayAdapter<String> adapter;
+    private OnFragmentInteractionListener mListener;
 
-    public MainActivityFragment() {
+    public SuperFragment() {
+        // Required empty public constructor
     }
 
     @Override
@@ -41,13 +43,13 @@ public class MainActivityFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_super, container, false);
 
-        ListView lvPhoto = (ListView) view.findViewById(R.id.lv_photos);
+        ListView lvPhoto = (ListView) view.findViewById(R.id.lvPhoto);
 
         items = new ArrayList<>();
         adapter = new ArrayAdapter<>(
                 getContext(),
-                R.layout.lv_photos_row,
-                R.id.textView2,
+                R.layout.fragment_super,
+                R.id.lv_photos,
                 items
         );
         lvPhoto.setAdapter(adapter);
@@ -79,7 +81,7 @@ public class MainActivityFragment extends Fragment {
 
 
     private void downloadPhotos() {
-        FilterDataTask task = new FilterDataTask();
+        SuperFragment.FilterDataTask task = new SuperFragment.FilterDataTask();
         task.execute();
     }
 
@@ -131,4 +133,44 @@ public class MainActivityFragment extends Fragment {
 
 
 
+
+
+    // TODO: Rename method, update argument and hook method into UI event
+    public void onButtonPressed(Uri uri) {
+        if (mListener != null) {
+            mListener.onFragmentInteraction(uri);
+        }
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+    /**
+     * This interface must be implemented by activities that contain this
+     * fragment to allow an interaction in this fragment to be communicated
+     * to the activity and potentially other fragments contained in that
+     * activity.
+     * <p>
+     * See the Android Training lesson <a href=
+     * "http://developer.android.com/training/basics/fragments/communicating.html"
+     * >Communicating with Other Fragments</a> for more information.
+     */
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onFragmentInteraction(Uri uri);
+    }
 }
