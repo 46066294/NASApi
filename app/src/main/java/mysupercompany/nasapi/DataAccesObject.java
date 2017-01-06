@@ -30,21 +30,21 @@ https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=
 
     public DataAccesObject() {}
 
-    public static ArrayList<Photo> getPhotos(String roverName, String sol, String camera, String page)  {
+    public static ArrayList<Photo> getPhotos(String roverName, Integer sol, String camera, Integer page)  {
         String url = getUrl(roverName, sol, camera, page);
         Log.d("URL: ", url);
 
         return doCall(url);
     }
 
-    public static String getUrl(String roverName, String sol, String camera, String page){
+    public static String getUrl(String roverName, Integer sol, String camera, Integer page){
         Uri builtUri = Uri.parse(BASE_URL)
                 .buildUpon()
                 .appendPath(roverName)
                 .appendPath("photos")
-                .appendQueryParameter("sol", sol)
+                .appendQueryParameter("sol", String.valueOf(sol))
                 .appendQueryParameter("camera", camera)
-                .appendQueryParameter("page", page)
+                .appendQueryParameter("page", String.valueOf(page))
                 .appendQueryParameter("api_key", API_KEY)
                 .build();
 
@@ -53,12 +53,10 @@ https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=
 
 
     private static ArrayList<Photo> doCall(String url) {
-        ArrayList<Photo> photos = new ArrayList<>();
         try {
-            //conexio a a la api
+            //conexio a la api
             String JsonResponse = HttpUtils.get(url);
-            //ArrayList<Photo> list = processJson(JsonResponse);
-            //photos.addAll(list);
+
             return processJson(JsonResponse);
 
         } catch (IOException e) {

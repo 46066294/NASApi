@@ -18,6 +18,12 @@ public class HttpUtils {
         String response = null;
 
         HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+        int statusCode = urlConnection.getResponseCode();
+
+        if(statusCode != 200){
+            return "ERROR: No Photos Found";
+        }
+
         try {
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
             response = readStream(in);

@@ -27,6 +27,9 @@ public class SuperFragment extends Fragment {
 
     private ArrayList<Photo> items;
     private PhotoAdapter adapter;
+    static Integer maxSolCuriosity = 1570;
+    static Integer maxSolOpportunity = 4603;
+    static Integer maxSolSpirit = 2208;
 
     public SuperFragment() {
         // Required empty public constructor
@@ -109,9 +112,9 @@ public class SuperFragment extends Fragment {
 
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
             String roverCar = preferences.getString("select_rover", "curiosity");
-            String sol = preferences.getString("input_sol", "1000");
+            Integer sol = Integer.valueOf(preferences.getString("input_sol", "1000"));
             String camera = preferences.getString("select_camera", "navcam");
-            String page = preferences.getString("input_page", "1");
+            Integer page = Integer.valueOf(preferences.getString("input_page", "1"));
 
 
             //Set<String> selections = preferences.getStringSet("multi_select_list_preference_1" , null);
@@ -128,14 +131,33 @@ public class SuperFragment extends Fragment {
 
             //DataAccesObject dao = new DataAccesObject();
             Log.d("DEBUG", "Starting...");
-            ArrayList<Photo> result = DataAccesObject.getPhotos(roverCar, sol, camera, page);
-
-            Log.d("DEBUG", result != null ? result.toString() : null);
+            ArrayList<Photo> result = checkFields(roverCar, sol, camera, page);
 
             //DataManager.deleteCards(getContext());
             //DataManager.saveCards(result, getContext());
 
             return result;
         }
+
+        public ArrayList<Photo> checkFields(String roverCar, Integer sol, String camera, Integer page){
+
+            if(((roverCar.equalsIgnoreCase("Curiosity") &&
+                    (camera.equalsIgnoreCase("FHAZ") || camera.equalsIgnoreCase("RHAZ") ||
+                            camera.equalsIgnoreCase("MAST") || camera.equalsIgnoreCase("CHEMCAM") ||
+                            camera.equalsIgnoreCase("MAHLI") || camera.equalsIgnoreCase("MARDI") ||
+                            camera.equalsIgnoreCase("NAVCAM")) && (sol <= maxSolCuriosity) && sol >= 0)) ||
+                    ((roverCar.equalsIgnoreCase("Opportunity") || roverCar.equalsIgnoreCase("Spirit"))  &&
+                            (camera.equalsIgnoreCase("FHAZ") || camera.equalsIgnoreCase("RHAZ") ||
+                            camera.equalsIgnoreCase("NAVCAM") || camera.equalsIgnoreCase("PANCAM") ||
+                            camera.equalsIgnoreCase("MINITES")) && (((sol <= maxSolOpportunity) && sol >= 0) ||
+                            (sol <= maxSolSpirit) && sol >= 0))){
+
+                ArrayList<Photo> result = DataAccesObject.getPhotos(roverCar, sol, camera, page);
+                Log.d("DEBUG", result != null ? result.toString() : null);
+                return result;
+            }
+            else return DataAccesObject.getPhotos("curiosity", 1000, "MAST", 1);
+        }//checkFields end
+
     }
 }

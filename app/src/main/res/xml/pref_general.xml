@@ -15,7 +15,7 @@
         android:key="input_sol" />
 
     <ListPreference
-        android:defaultValue="navcam"
+        android:defaultValue="NAVCAM"
         android:entries="@array/rover_camera_entries"
         android:entryValues="@array/rover_camera_out"
         android:key="select_camera"
