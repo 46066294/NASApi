@@ -25,9 +25,8 @@ https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=
     */
 
     private static final int PAGES = 10;
-    private static final String API_KEY = "XXXXXXXX";
+    private static final String API_KEY = "XXXXXXXXX";
     private static final String BASE_URL = "https://api.nasa.gov/mars-photos/api/v1/rovers/";
-
 
     public DataAccesObject() {}
 

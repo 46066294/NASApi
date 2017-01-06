@@ -2,9 +2,11 @@ package mysupercompany.nasapi;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -105,7 +107,13 @@ public class SuperFragment extends Fragment {
         @Override
         protected ArrayList<Photo> doInBackground(Void... voids) {
 
-            //SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+            String roverCar = preferences.getString("select_rover", "curiosity");
+            String sol = preferences.getString("input_sol", "1000");
+            String camera = preferences.getString("select_camera", "navcam");
+            String page = preferences.getString("input_page", "1");
+
+
             //Set<String> selections = preferences.getStringSet("multi_select_list_preference_1" , null);
             //String[] selectedColor = selections.toArray(new String[] {});
 
@@ -119,8 +127,8 @@ public class SuperFragment extends Fragment {
             */
 
             //DataAccesObject dao = new DataAccesObject();
-            Log.d("DEBUG", "AAAAAAAAAAAAAAAAAAAA");
-            ArrayList<Photo> result = DataAccesObject.getPhotos("Opportunity", "800", "navcam", "24");
+            Log.d("DEBUG", "Starting...");
+            ArrayList<Photo> result = DataAccesObject.getPhotos(roverCar, sol, camera, page);
 
             Log.d("DEBUG", result != null ? result.toString() : null);
 
