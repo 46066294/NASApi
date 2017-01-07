@@ -1,16 +1,17 @@
 package mysupercompany.nasapi;
 
 import android.content.Context;
+import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
 import com.bumptech.glide.Glide;
-
 import java.util.List;
+
+import mysupercompany.nasapi.databinding.LvPhotosRowBinding;
 
 /**
  * Created by Mat on 05/01/2017.
@@ -27,39 +28,30 @@ public class PhotoAdapter extends ArrayAdapter<Photo>{
     public View getView(int position, View convertView, ViewGroup parent) {
         Photo photo = getItem(position);
 
+        LvPhotosRowBinding binding = null;
+
         if (convertView == null) {
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.lv_photos_row, parent, false);
+            //convertView = inflater.inflate(R.layout.lv_photos_row, parent, false);
+            binding = DataBindingUtil.inflate(inflater, R.layout.lv_photos_row, parent, false);
         }
+        else binding = DataBindingUtil.getBinding(convertView);
 
-        TextView tvRoverName = (TextView) convertView.findViewById(R.id.roverName);
-        TextView tvRoverId = (TextView) convertView.findViewById(R.id.roverId);
-        TextView tvSol = (TextView) convertView.findViewById(R.id.sol);
-        TextView tvCamera = (TextView) convertView.findViewById(R.id.camera);
-        TextView tvStatus = (TextView) convertView.findViewById(R.id.status);
-        TextView tvLaunchDate = (TextView) convertView.findViewById(R.id.launchDate);
-        TextView tvLandingDate = (TextView) convertView.findViewById(R.id.landingDate);
-        TextView tvMaxDate = (TextView) convertView.findViewById(R.id.maxDate);
-        TextView tvMaxSol = (TextView) convertView.findViewById(R.id.maxSol);
-        //TextView tvPage = (TextView) convertView.findViewById(R.id.page);
-        TextView tvTotalPhotos = (TextView) convertView.findViewById(R.id.totalPhotos);
-        ImageView imageView = (ImageView) convertView.findViewById(R.id.imageView);
+        binding.roverName.setText(photo.getRoverName());
+        binding.roverId.setText(photo.getRoverId());
+        binding.sol.setText(photo.getSol());
+        binding.camera.setText(photo.getRoverCam());
+        binding.status.setText(photo.getStatus());
+        binding.launchDate.setText(photo.getLaunchDate());
+        binding.landingDate.setText(photo.getLandingDate());
+        binding.maxDate.setText(photo.getMaxDate());
+        binding.maxSol.setText(photo.getMaxSol());
+        binding.totalPhotos.setText(photo.getTotalPhotos());
+        Glide.with(getContext()).load(photo.getImageUrl()).into(binding.imageView);
 
-        tvRoverName.setText(photo.getRoverName());
-        tvSol.setText(photo.getSol().toString());
-        tvRoverId.setText(photo.getRoverId().toString());
-        tvCamera.setText(photo.getRoverCam());
-        tvStatus.setText(photo.getStatus());
-        tvLaunchDate.setText(photo.getLaunchDate());
-        tvLandingDate.setText(photo.getLandingDate());
-        tvMaxDate.setText(photo.getMaxDate());
-        tvMaxSol.setText(photo.getMaxSol().toString());
-        //tvPage.setText(photo.getPage().toString());
-        tvTotalPhotos.setText(photo.getTotalPhotos().toString());
+        Log.w("CARD ", photo.toString());
 
-        Glide.with(getContext()).load(photo.getImageUrl()).into(imageView);
-
-        return convertView;
+        return binding.getRoot();
     }
 
 }

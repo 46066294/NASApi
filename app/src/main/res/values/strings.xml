@@ -53,6 +53,7 @@
     <string name="page_title">Enter a value</string>
     <string name="page_num">Enter Data Page</string>
 
+    <string name="title_activity_detail">DetailActivity</string>
 
     <!-- DUMMY DOWN -->
 

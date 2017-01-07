@@ -1,14 +1,18 @@
 package mysupercompany.nasapi;
 
-import android.content.Context;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.Loader;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -16,17 +20,21 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-
+import android.widget.AdapterView;
 import java.util.ArrayList;
 
+import mysupercompany.nasapi.databinding.FragmentSuperBinding;
+//import nl.littlerobots.cupboard.tools.provider.UriHelper;
+
+import static nl.qbusict.cupboard.CupboardFactory.cupboard;
 
 
-public class SuperFragment extends Fragment {
+
+public class SuperFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private ArrayList<Photo> items;
-    private PhotoAdapter adapter;
+    private PhotoCursorAdapter adapter;
+    private ProgressDialog dialog;
     static Integer maxSolCuriosity = 1570;
     static Integer maxSolOpportunity = 4603;
     static Integer maxSolSpirit = 2208;
@@ -46,17 +54,29 @@ public class SuperFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_super, container, false);
-        ListView lvPhoto = (ListView) view.findViewById(R.id.lv_photos);
+        FragmentSuperBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_super, container, false);
 
-        items = new ArrayList<>();
-        adapter = new PhotoAdapter(
-                getContext(),
-                R.layout.lv_photos_row,
-                //R.id.rover,
-                items
-        );
-        lvPhoto.setAdapter(adapter);
+        View view = binding.getRoot();
+
+        adapter = new PhotoCursorAdapter(getContext(), Photo.class);
+
+        dialog = new ProgressDialog(getContext());
+        dialog.setMessage("Loading Mars Photos...");
+
+        //lvPhoto.setAdapter(adapter);
+        binding.lvPhotos.setAdapter(adapter);
+        //lvPhoto.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        binding.lvPhotos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Photo photo = (Photo) adapterView.getItemAtPosition(i);
+                Intent intent = new Intent(getContext(), DetailActivity.class);
+                intent.putExtra("photo", photo);
+                startActivity(intent);
+            }
+        });
+
+        getLoaderManager().initLoader(0, null, this);
 
         return view;
     }
@@ -77,7 +97,6 @@ public class SuperFragment extends Fragment {
 
         //Settings
         if (id == R.id.action_settings) {
-
             return true;
         }
 
@@ -97,8 +116,24 @@ public class SuperFragment extends Fragment {
         downloadPhotos();
     }
 
-    private class FilterDataTask extends AsyncTask<Void, Void, ArrayList<Photo>> {
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return DataManager.getCursorLoader(getContext());
+    }
 
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        adapter.swapCursor(data);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        adapter.swapCursor(null);
+    }
+
+
+    private class FilterDataTask extends AsyncTask<Void, Void, Void> {
+        /*
         @Override
         protected void onPostExecute(ArrayList<Photo> photos) {
             adapter.clear();
@@ -106,9 +141,22 @@ public class SuperFragment extends Fragment {
                 adapter.add(photo);
             }
         }
+        */
 
         @Override
-        protected ArrayList<Photo> doInBackground(Void... voids) {
+        protected void onPreExecute() {
+            super.onPreExecute();
+            dialog.show();
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            dialog.dismiss();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
 
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
             String roverCar = preferences.getString("select_rover", "curiosity");
@@ -116,27 +164,21 @@ public class SuperFragment extends Fragment {
             String camera = preferences.getString("select_camera", "navcam");
             Integer page = Integer.valueOf(preferences.getString("input_page", "1"));
 
-
-            //Set<String> selections = preferences.getStringSet("multi_select_list_preference_1" , null);
-            //String[] selectedColor = selections.toArray(new String[] {});
-
-            /*
-            for (int i = 0; i < selectedColor.length ; i++){
-                System.out.println("\ntestColor" + i +" : " + selectedColor[i]);
-            }
-
-            String selectedRarity = preferences.getString("list_preference_1" , null);
-            System.out.println("\ntestRariry : " + selectedRarity);
-            */
-
-            //DataAccesObject dao = new DataAccesObject();
             Log.d("DEBUG", "Starting...");
+            //crida http a la Api
             ArrayList<Photo> result = checkFields(roverCar, sol, camera, page);
 
-            //DataManager.deleteCards(getContext());
-            //DataManager.saveCards(result, getContext());
+            //Log.d("DEBUG", result != null ? result.toString() : null);
 
-            return result;
+            if(result == null){
+                return null;
+            }
+            else{
+                DataManager.deletePhotos(getContext());
+                DataManager.savePhotos(result, getContext());
+            }
+
+            return null;
         }
 
         public ArrayList<Photo> checkFields(String roverCar, Integer sol, String camera, Integer page){

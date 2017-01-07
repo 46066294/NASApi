@@ -24,7 +24,7 @@ public class DataAccesObject {
 https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=mast&page=33&api_key=XXXXXXXXX
     */
 
-    private static final int PAGES = 10;
+    //private static final int PAGES = 1;
     private static final String API_KEY = "XXXXXXXXX";
     private static final String BASE_URL = "https://api.nasa.gov/mars-photos/api/v1/rovers/";
 
@@ -53,18 +53,23 @@ https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=
 
 
     private static ArrayList<Photo> doCall(String url) {
-        try {
-            //conexio a la api
-            String JsonResponse = HttpUtils.get(url);
+        ArrayList<Photo> photos = new ArrayList<>();
 
-            return processJson(JsonResponse);
+        //for (int i = 0; i < PAGES; i++) {
+            try {
+                //conexio a la api
+                String jsonResponse = HttpUtils.get(url);
+                ArrayList<Photo> list = processJson(jsonResponse);
+                photos.addAll(list);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+                //return processJson(JsonResponse);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        //}
+
+        return photos;
     }
-
 
 
     private static ArrayList<Photo> processJson(String jsonResponse) {
@@ -112,86 +117,3 @@ https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=
     }
 
 }// DataAccesObject class
-
-
-/*
-public static String getUrl(Set<String> colors, String rarity) {
-
-        Log.d("getURL-colorSet" , colors.toString());
-        Log.d("getURL-rarity" , rarity);
-
-        List<String> colorList = new ArrayList<String>(colors);
-        int size = colorList.size();
-
-        Uri builtUri = Uri.parse(BASE_URL);
-
-        if(colorList.get(0).equals("no_color")){
-            builtUri = Uri.parse(BASE_URL)
-                    .buildUpon()
-                    .appendQueryParameter("rarity", rarity)
-                    //.appendQueryParameter("page", String.valueOf(page))
-                    .build();
-            return builtUri.toString();
-        }
-
-        switch (size) {
-            case 1:
-                builtUri = Uri.parse(BASE_URL)
-                        .buildUpon()
-                        .appendQueryParameter("rarity", rarity)
-                        .appendQueryParameter("colors", colorList.get(0))
-                        //.appendQueryParameter("page", String.valueOf(page))
-                        .build();
-                break;
-
-            case 2:
-                builtUri = Uri.parse(BASE_URL)
-                        .buildUpon()
-                        .appendQueryParameter("rarity", rarity)
-                        .appendQueryParameter("colors", colorList.get(0))
-                        .appendQueryParameter("colors", colorList.get(1))
-                        //.appendQueryParameter("page", String.valueOf(page))
-                        .build();
-                break;
-
-            case 3:
-                builtUri = Uri.parse(BASE_URL)
-                        .buildUpon()
-                        .appendQueryParameter("rarity", rarity)
-                        .appendQueryParameter("colors", colorList.get(0))
-                        .appendQueryParameter("colors", colorList.get(1))
-                        .appendQueryParameter("colors", colorList.get(2))
-                        //.appendQueryParameter("page", String.valueOf(page))
-                        .build();
-                break;
-
-            case 4:
-                builtUri = Uri.parse(BASE_URL)
-                        .buildUpon()
-                        .appendQueryParameter("rarity", rarity)
-                        .appendQueryParameter("colors", colorList.get(0))
-                        .appendQueryParameter("colors", colorList.get(1))
-                        .appendQueryParameter("colors", colorList.get(2))
-                        .appendQueryParameter("colors", colorList.get(3))
-                        //.appendQueryParameter("page", String.valueOf(page))
-                        .build();
-                break;
-
-            case 5:
-                builtUri = Uri.parse(BASE_URL)
-                        .buildUpon()
-                        .appendQueryParameter("rarity", rarity)
-                        .appendQueryParameter("colors", colorList.get(0))
-                        .appendQueryParameter("colors", colorList.get(1))
-                        .appendQueryParameter("colors", colorList.get(2))
-                        .appendQueryParameter("colors", colorList.get(3))
-                        .appendQueryParameter("colors", colorList.get(4))
-                        //.appendQueryParameter("page", String.valueOf(page))
-                        .build();
-                break;
-        }
-
-        return builtUri.toString();
-    }
-
-*/
