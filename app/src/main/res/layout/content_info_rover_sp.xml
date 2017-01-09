@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/content_info_rover_sp"
     android:layout_width="match_parent"
+    android:background="@drawable/mars"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -16,14 +17,15 @@
 
 
     <TextView
-        android:text="Destination:"
+        android:text="Destination: "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/landigDate"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/destination"
-        android:textStyle="normal|bold" />
+        android:textStyle="normal|bold"
+        android:textColor="@android:color/background_light" />
 
     <ImageView
         android:layout_width="match_parent"
@@ -45,7 +47,8 @@
             android:layout_height="wrap_content"
 
             android:layout_marginTop="19dp"
-            android:id="@+id/missionText" />
+            android:id="@+id/missionText"
+            android:textColor="@android:color/background_light" />
     </ScrollView>
 
     <TextView
@@ -56,7 +59,8 @@
         android:layout_below="@+id/imageOpportunity"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textStyle="normal|bold" />
+        android:textStyle="normal|bold"
+        android:textColor="@android:color/background_light" />
 
     <TextView
         android:text="ABOUT THE MISSION "
@@ -67,7 +71,8 @@
         android:layout_below="@+id/destination"
         android:layout_centerHorizontal="true"
         android:paddingTop="10dp"
-        android:paddingBottom="0dp" />
+        android:paddingBottom="0dp"
+        android:textColor="@android:color/background_light" />
 
     <TextView
         android:text="Acronym: MER"
@@ -113,7 +118,8 @@
         android:textSize="18sp"
         android:textStyle="normal|bold"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorPrimary" />
 
     <TextView
         android:text="June 10, 2003 1:58 p.m. EDT (17:58 UTC)"
@@ -122,7 +128,8 @@
         android:id="@+id/textView18"
         android:layout_below="@+id/launchDate"
         android:layout_alignLeft="@+id/carName"
-        android:layout_alignStart="@+id/carName" />
+        android:layout_alignStart="@+id/carName"
+        android:textColor="@android:color/background_light" />
 
     <TextView
         android:text="Launch Location:"
@@ -132,7 +139,8 @@
         android:textStyle="normal|bold"
         android:layout_below="@+id/textView18"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textColor="@android:color/background_light" />
 
     <TextView
         android:text="Cape Canaveral Air Force Station, Florida"
@@ -141,17 +149,19 @@
         android:id="@+id/textView19"
         android:layout_below="@+id/launchLocation"
         android:layout_alignLeft="@+id/textView18"
-        android:layout_alignStart="@+id/textView18" />
+        android:layout_alignStart="@+id/textView18"
+        android:textColor="@android:color/background_light" />
 
     <TextView
-        android:text="Landing Date:"
+        android:text="Landing Date: "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/landigDate"
         android:textStyle="normal|bold"
         android:layout_below="@+id/textView19"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textColor="@android:color/background_light" />
 
     <TextView
         android:text="January 04, 2004 04:35 UTC"
@@ -160,7 +170,8 @@
         android:layout_alignBottom="@+id/landigDate"
         android:layout_toRightOf="@+id/landigDate"
         android:layout_toEndOf="@+id/landigDate"
-        android:id="@+id/textView20" />
+        android:id="@+id/textView20"
+        android:textColor="@android:color/background_light" />
 
     <TextView
         android:text="Gusev Crater, Mars"
@@ -169,7 +180,8 @@
         android:layout_below="@+id/landigDate"
         android:layout_toRightOf="@+id/destination"
         android:layout_toEndOf="@+id/destination"
-        android:id="@+id/textView21" />
+        android:id="@+id/textView21"
+        android:textColor="@android:color/background_light" />
 
     <TextView
         android:text="Mission End Date: May 25, 2011"
@@ -180,6 +192,7 @@
         android:textColor="@android:color/background_light"
         android:layout_alignBottom="@+id/imageOpportunity"
         android:layout_alignRight="@+id/status"
-        android:layout_alignEnd="@+id/status" />
+        android:layout_alignEnd="@+id/status"
+        android:textStyle="normal|bold|italic" />
 
 </RelativeLayout>

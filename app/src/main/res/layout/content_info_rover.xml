@@ -5,6 +5,7 @@
     android:id="@+id/content_info_rover"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/mars"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -21,7 +22,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/destination"
-        android:textStyle="normal|bold" />
+        android:textStyle="normal|bold"
+        android:textColor="@android:color/background_light" />
 
     <ImageView
         android:layout_width="match_parent"
@@ -42,7 +44,8 @@
         android:layout_height="wrap_content"
 
         android:layout_marginTop="19dp"
-        android:id="@+id/missionText" />
+        android:id="@+id/missionText"
+        android:textColor="@android:color/background_light" />
     </ScrollView>
 
     <TextView
@@ -53,7 +56,8 @@
         android:layout_below="@+id/imageOpportunity"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textStyle="normal|bold" />
+        android:textStyle="normal|bold"
+        android:textColor="@android:color/background_light" />
 
     <TextView
         android:text="ABOUT THE MISSION "
@@ -64,7 +68,8 @@
         android:layout_below="@+id/destination"
         android:layout_centerHorizontal="true"
         android:paddingTop="10dp"
-        android:paddingBottom="0dp" />
+        android:paddingBottom="0dp"
+        android:textColor="@android:color/background_light" />
 
     <TextView
         android:text="Acronym: MSL"
@@ -110,7 +115,8 @@
         android:textSize="18sp"
         android:textStyle="normal|bold"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorPrimary" />
 
     <TextView
         android:text="November 26, 2011 10:02 a.m. 15:02 UTC"
@@ -119,7 +125,8 @@
         android:id="@+id/textView18"
         android:layout_below="@+id/launchDate"
         android:layout_alignLeft="@+id/carName"
-        android:layout_alignStart="@+id/carName" />
+        android:layout_alignStart="@+id/carName"
+        android:textColor="@android:color/background_light" />
 
     <TextView
         android:text="Launch Location:"
@@ -129,7 +136,8 @@
         android:textStyle="normal|bold"
         android:layout_below="@+id/textView18"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textColor="@android:color/background_light" />
 
     <TextView
         android:text="Cape Canaveral Air Force Station, Florida"
@@ -138,7 +146,8 @@
         android:id="@+id/textView19"
         android:layout_below="@+id/launchLocation"
         android:layout_alignLeft="@+id/textView18"
-        android:layout_alignStart="@+id/textView18" />
+        android:layout_alignStart="@+id/textView18"
+        android:textColor="@android:color/background_light" />
 
     <TextView
         android:text="Landing Date:"
@@ -148,7 +157,8 @@
         android:textStyle="normal|bold"
         android:layout_below="@+id/textView19"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textColor="@android:color/background_light" />
 
     <TextView
         android:text=" August 06, 2012 05:32 UTC"
@@ -157,7 +167,8 @@
         android:layout_alignBottom="@+id/landigDate"
         android:layout_toRightOf="@+id/landigDate"
         android:layout_toEndOf="@+id/landigDate"
-        android:id="@+id/textView20" />
+        android:id="@+id/textView20"
+        android:textColor="@android:color/background_light" />
 
     <TextView
         android:text=" Gale Crater, Mars"
@@ -166,7 +177,8 @@
         android:layout_below="@+id/landigDate"
         android:layout_toRightOf="@+id/destination"
         android:layout_toEndOf="@+id/destination"
-        android:id="@+id/textView21" />
+        android:id="@+id/textView21"
+        android:textColor="@android:color/background_light" />
 
 
 </RelativeLayout>

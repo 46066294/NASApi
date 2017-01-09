@@ -111,6 +111,7 @@
     <string name="title_activity_info_oppo">activity_info_oppo</string>
     <string name="title_activity_info_rover_oppo">InfoRoverOppo</string>
     <string name="title_activity_info_rover_sp">InfoRoverSp</string>
+    <string name="title_activity_notes">Notes</string>
 
 
 </resources>

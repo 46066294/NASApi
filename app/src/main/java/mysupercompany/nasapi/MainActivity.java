@@ -109,15 +109,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             i.putExtra("roverCar", "spirit");
             startActivity(i);
 
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.notes) {
+            Intent i = new Intent(MainActivity.this, Notes.class);
+            startActivity(i);
 
         }
-
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
