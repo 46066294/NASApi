@@ -1,13 +1,17 @@
 package mysupercompany.nasapi;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -82,12 +86,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
+        if (id == R.id.curiosity) {
+            String roverCar = "curiosity";
+            Log.d("DEB", roverCar);
+            Intent i = new Intent(MainActivity.this, InfoRover.class);
+            i.putExtra("roverCar", "curiosity");
+            startActivity(i);
+
+        } else if (id == R.id.opportunity) {
+            String roverCar = "opportunity";
+            Log.d("DEB", roverCar);
+            Intent i = new Intent(MainActivity.this, InfoRoverOppo.class);
+            i.putExtra("roverCar", "opportunity");
+            startActivity(i);
+
+        } else if (id == R.id.spirit) {
+            String roverCar = "spirit";
+            Log.d("DEB", roverCar);
+            Intent i = new Intent(MainActivity.this, InfoRoverSp.class);
+            i.putExtra("roverCar", "spirit");
+            startActivity(i);
+
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {

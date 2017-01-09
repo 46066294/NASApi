@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.databinding.DataBindingUtil;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -24,10 +23,6 @@ import android.widget.AdapterView;
 import java.util.ArrayList;
 
 import mysupercompany.nasapi.databinding.FragmentSuperBinding;
-//import nl.littlerobots.cupboard.tools.provider.UriHelper;
-
-import static nl.qbusict.cupboard.CupboardFactory.cupboard;
-
 
 
 public class SuperFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
@@ -47,7 +42,6 @@ public class SuperFragment extends Fragment implements LoaderManager.LoaderCallb
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        Intent i = getActivity().getIntent();
     }
 
     @Override
@@ -55,7 +49,6 @@ public class SuperFragment extends Fragment implements LoaderManager.LoaderCallb
                              Bundle savedInstanceState) {
 
         FragmentSuperBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_super, container, false);
-
         View view = binding.getRoot();
 
         adapter = new PhotoCursorAdapter(getContext(), Photo.class);
@@ -167,7 +160,7 @@ public class SuperFragment extends Fragment implements LoaderManager.LoaderCallb
             Log.d("DEBUG", "Starting...");
             //crida http a la Api
             ArrayList<Photo> result = checkFields(roverCar, sol, camera, page);
-
+            Log.d("DEBUG", "Ending...");
             //Log.d("DEBUG", result != null ? result.toString() : null);
 
             if(result == null){
@@ -190,12 +183,13 @@ public class SuperFragment extends Fragment implements LoaderManager.LoaderCallb
                             camera.equalsIgnoreCase("NAVCAM")) && (sol <= maxSolCuriosity) && sol >= 0)) ||
                     ((roverCar.equalsIgnoreCase("Opportunity") || roverCar.equalsIgnoreCase("Spirit"))  &&
                             (camera.equalsIgnoreCase("FHAZ") || camera.equalsIgnoreCase("RHAZ") ||
-                            camera.equalsIgnoreCase("NAVCAM") || camera.equalsIgnoreCase("PANCAM") ||
-                            camera.equalsIgnoreCase("MINITES")) && (((sol <= maxSolOpportunity) && sol >= 0) ||
+                                    camera.equalsIgnoreCase("NAVCAM") || camera.equalsIgnoreCase("PANCAM") ||
+                                    camera.equalsIgnoreCase("MINITES")) && (((sol <= maxSolOpportunity) && sol >= 0) ||
                             (sol <= maxSolSpirit) && sol >= 0))){
 
                 ArrayList<Photo> result = DataAccesObject.getPhotos(roverCar, sol, camera, page);
                 Log.d("DEBUG", result != null ? result.toString() : null);
+
                 return result;
             }
             else return DataAccesObject.getPhotos("curiosity", 1000, "MAST", 1);
