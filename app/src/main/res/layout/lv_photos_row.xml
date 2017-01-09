@@ -15,15 +15,6 @@
         tools:context="mysupercompany.nasapi.SuperFragment">
 
 
-        <ImageView
-            android:layout_width="match_parent"
-            app:srcCompat="@drawable/ic_menu_camera"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:id="@+id/imageView"
-            android:layout_height="300dp" />
-
         <TextView
             android:text="TextView"
             android:layout_width="wrap_content"
@@ -31,52 +22,67 @@
             android:id="@+id/roverName"
             android:layout_below="@+id/imageView"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <TextView
-            android:text="TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/roverName"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:id="@+id/roverId" />
+            android:textColor="@android:color/background_light" />
 
         <TextView
             android:text="TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/sol"
             android:layout_below="@+id/roverId"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:id="@+id/sol" />
+            android:textColor="@android:color/background_light" />
 
         <TextView
             android:text="TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/camera"
             android:layout_below="@+id/sol"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:id="@+id/camera" />
+            android:textColor="@android:color/background_light" />
 
         <TextView
             android:text="TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/status"
             android:layout_below="@+id/camera"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:id="@+id/status" />
+            android:textColor="@android:color/background_light" />
+
+        <ImageView
+            android:layout_width="200dp"
+            app:srcCompat="@drawable/ic_menu_camera"
+            android:id="@+id/imageView"
+            android:layout_height="200dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/roverId"
+            android:layout_below="@+id/imageView"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:textColor="@android:color/background_light" />
 
         <TextView
             android:text="TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/launchDate"
-            android:layout_below="@+id/status"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_below="@+id/roverId"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:textColor="@android:color/background_light" />
 
         <TextView
             android:text="TextView"
@@ -84,36 +90,38 @@
             android:layout_height="wrap_content"
             android:id="@+id/landingDate"
             android:layout_below="@+id/launchDate"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <TextView
-            android:text="TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/landingDate"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:id="@+id/maxDate" />
-
-        <TextView
-            android:text="TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/maxDate"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:id="@+id/maxSol" />
-
-
-
-        <TextView
-            android:text="TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/imageView"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:id="@+id/totalPhotos" />
+            android:textColor="@android:color/background_light" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/totalPhotos"
+            android:layout_below="@+id/status"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textColor="@android:color/background_light" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/maxDate"
+            android:layout_below="@+id/landingDate"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:textColor="@android:color/background_light" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/maxSol"
+            android:layout_below="@+id/maxDate"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:textColor="@android:color/background_light" />
     </RelativeLayout>
 </layout>
