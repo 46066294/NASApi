@@ -12,7 +12,9 @@ public class Photo implements Serializable{
     private String roverName, roverCam, imageUrl, status;
     private String landingDate, launchDate, maxDate;
 
-    public Photo() {}
+    public Photo() {
+
+    }
 
     public Photo(Integer id, Integer sol, Integer page, Integer totalPhotos, Integer maxSol,
                  String roverName, String roverCam, String imageUrl, String status,
@@ -29,6 +31,12 @@ public class Photo implements Serializable{
         this.status = status;
         this.landingDate = landingDate;
         this.launchDate = launchDate;
+    }
+
+    public Photo(Integer sol, String roverName, String roverCam) {
+        this.sol = sol;
+        this.roverName = roverName;
+        this.roverCam = roverCam;
     }
 
     public Integer getRoverId() {

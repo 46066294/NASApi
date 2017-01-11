@@ -110,8 +110,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(i);
 
         } else if (id == R.id.notes) {
-            Intent i = new Intent(MainActivity.this, Notes.class);
+            Intent i = new Intent(MainActivity.this, FilesActivity.class);
             startActivity(i);
+
+            /*Intent i = new Intent(this, SettingsActivity.class);
+            startActivity(i);*/
+
 
         }
 

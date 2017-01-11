@@ -17,7 +17,7 @@ public class InfoRoverSp extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Intent i = getIntent();
+        //Intent i = getIntent();
 
     }
 

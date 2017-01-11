@@ -28,6 +28,10 @@ import mysupercompany.nasapi.databinding.FragmentSuperBinding;
 public class SuperFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private ArrayList<Photo> items;
+    FragmentSuperBinding binding;
+    private String roverCar;
+    private Integer sol;
+    private String camera;
     private PhotoCursorAdapter adapter;
     private ProgressDialog dialog;
     static Integer maxSolCuriosity = 1570;
@@ -48,7 +52,7 @@ public class SuperFragment extends Fragment implements LoaderManager.LoaderCallb
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        FragmentSuperBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_super, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_super, container, false);
         View view = binding.getRoot();
 
         adapter = new PhotoCursorAdapter(getContext(), Photo.class);
@@ -58,7 +62,7 @@ public class SuperFragment extends Fragment implements LoaderManager.LoaderCallb
 
         //lvPhoto.setAdapter(adapter);
         binding.lvPhotos.setAdapter(adapter);
-        //lvPhoto.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        //click en item para hacer la foto mas grande y visible
         binding.lvPhotos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -70,6 +74,8 @@ public class SuperFragment extends Fragment implements LoaderManager.LoaderCallb
         });
 
         getLoaderManager().initLoader(0, null, this);
+        int count = binding.lvPhotos.getChildCount();
+        Log.d("DEBUGCOUNT", String.valueOf(count));
 
         return view;
     }
@@ -152,9 +158,9 @@ public class SuperFragment extends Fragment implements LoaderManager.LoaderCallb
         protected Void doInBackground(Void... voids) {
 
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-            String roverCar = preferences.getString("select_rover", "curiosity");
-            Integer sol = Integer.valueOf(preferences.getString("input_sol", "1000"));
-            String camera = preferences.getString("select_camera", "navcam");
+            roverCar = preferences.getString("select_rover", "curiosity");
+            sol = Integer.valueOf(preferences.getString("input_sol", "1000"));
+            camera = preferences.getString("select_camera", "navcam");
             Integer page = Integer.valueOf(preferences.getString("input_page", "1"));
 
             Log.d("DEBUG", "Starting...");
@@ -163,7 +169,8 @@ public class SuperFragment extends Fragment implements LoaderManager.LoaderCallb
             Log.d("DEBUG", "Ending...");
             //Log.d("DEBUG", result != null ? result.toString() : null);
 
-            if(result == null){
+            if(result == null){//////////////////////////////////////////////////////////////
+
                 return null;
             }
             else{
@@ -188,6 +195,8 @@ public class SuperFragment extends Fragment implements LoaderManager.LoaderCallb
                             (sol <= maxSolSpirit) && sol >= 0))){
 
                 ArrayList<Photo> result = DataAccesObject.getPhotos(roverCar, sol, camera, page);
+                //ArrayList<Photo> result = DataAccesObject.getPhotos("curiosity", 1000, "MAST", 1);
+
                 Log.d("DEBUG", result != null ? result.toString() : null);
 
                 return result;

@@ -30,7 +30,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        app:srcCompat="@mipmap/spirit"
+        app:srcCompat="@mipmap/opportunity"
         android:scaleX="1.3"
         android:id="@+id/imageOpportunity"
         android:layout_below="@+id/carName"

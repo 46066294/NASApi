@@ -9,6 +9,7 @@
 
     <EditTextPreference
         android:defaultValue="1000"
+
         android:selectAllOnFocus="true"
         android:singleLine="true"
         android:title="@string/title_sol"
@@ -27,7 +28,13 @@
         android:singleLine="true"
         android:title="@string/page_num"
         android:key="input_page" />
-
+    
+    <EditTextPreference
+        android:defaultValue="Enter your notes."
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="@string/my_notes"
+        android:key="my_notes_edit_text_preference" />
 
 
 </PreferenceScreen>

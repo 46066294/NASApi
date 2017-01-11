@@ -10,11 +10,11 @@
 
     <!-- Strings related to Settings -->
     <string name="select_rover">Select Rover Type</string>
+    <string name="my_notes">Bookmark for Martian Day</string>
     <string-array name="rover_types_entries">
         <item>Curiosity</item>
         <item>Opportunity</item>
         <item>Spirit</item>
-        <item>All Types</item>
     </string-array>
     <string-array name="rover_types_out">
         <item>curiosity</item>
@@ -100,6 +100,8 @@
     </string-array>
     <string-array name="multi_select_list_preference_default_value" />
     <string name="pref_title_system_sync_settings">System sync settings</string>
+    <string name="notes">Notes</string>
+
 
     <!-- Example settings for Notifications -->
     <string name="pref_header_notifications">Notifications</string>
@@ -112,6 +114,7 @@
     <string name="title_activity_info_rover_oppo">InfoRoverOppo</string>
     <string name="title_activity_info_rover_sp">InfoRoverSp</string>
     <string name="title_activity_notes">Notes</string>
+    <string name="title_activity_files">Notes</string>
 
 
 </resources>
