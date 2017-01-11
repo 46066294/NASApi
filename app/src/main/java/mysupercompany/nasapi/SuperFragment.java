@@ -23,7 +23,7 @@ import android.widget.AdapterView;
 import java.util.ArrayList;
 
 import mysupercompany.nasapi.databinding.FragmentSuperBinding;
-
+ 
 /**
  * Fragment principal de carga de fotos y operaciones con bbdd
  */
