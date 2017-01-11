@@ -11,8 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+
 
 /**
  * Created by 46066294p on 14/10/16.
@@ -25,7 +24,7 @@ https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=
     */
 
     //private static final int PAGES = 1;
-    private static final String API_KEY = "XXXXXXXXX";
+    private static final String API_KEY = "5tYEBLjPGEoVxuzwZ7dNIoWMtnmCPpPo8Mk7WRen";
     private static final String BASE_URL = "https://api.nasa.gov/mars-photos/api/v1/rovers/";
 
     public DataAccesObject() {}
@@ -55,18 +54,15 @@ https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=
     private static ArrayList<Photo> doCall(String url) {
         ArrayList<Photo> photos = new ArrayList<>();
 
-        //for (int i = 0; i < PAGES; i++) {
-            try {
-                //conexio a la api
-                String jsonResponse = HttpUtils.get(url);
-                ArrayList<Photo> list = processJson(jsonResponse);
-                photos.addAll(list);
+        try {
+            //conexio a la api
+            String jsonResponse = HttpUtils.get(url);
+            ArrayList<Photo> list = processJson(jsonResponse);
+            photos.addAll(list);
 
-                //return processJson(JsonResponse);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        //}
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         return photos;
     }
@@ -84,7 +80,6 @@ https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&camera=
                 JSONObject jsonCamera = jsonOnePhoto.getJSONObject("camera");
 
                 Photo photo = new Photo();
-                //generic
                 photo.setRoverId(jsonOnePhoto.getInt("id"));
                 photo.setSol(jsonOnePhoto.getInt("sol"));
                 //photo.setPage(jsonOnePhoto.getInt("page"));

@@ -17,7 +17,8 @@
     <EditText
         android:id="@+id/txtText1"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textColorLink="?attr/colorPrimary" />
 
     <Button
         android:id="@+id/btnGuardar"

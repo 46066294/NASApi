@@ -3,6 +3,8 @@ package mysupercompany.nasapi;
 import java.io.Serializable;
 
 /**
+ * POJO
+ *
  * Created by Mat on 04/01/2017.
  */
 
@@ -14,29 +16,6 @@ public class Photo implements Serializable{
 
     public Photo() {
 
-    }
-
-    public Photo(Integer id, Integer sol, Integer page, Integer totalPhotos, Integer maxSol,
-                 String roverName, String roverCam, String imageUrl, String status,
-                 String landingDate, String launchDate, String maxDate) {
-        this.id = id;
-        this.sol = sol;
-        this.page = page;
-        this.totalPhotos = totalPhotos;
-        this.maxSol = maxSol;
-        this.maxDate = maxDate;
-        this.roverName = roverName;
-        this.roverCam = roverCam;
-        this.imageUrl = imageUrl;
-        this.status = status;
-        this.landingDate = landingDate;
-        this.launchDate = launchDate;
-    }
-
-    public Photo(Integer sol, String roverName, String roverCam) {
-        this.sol = sol;
-        this.roverName = roverName;
-        this.roverCam = roverCam;
     }
 
     public Integer getRoverId() {

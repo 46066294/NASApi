@@ -3,14 +3,13 @@ package mysupercompany.nasapi;
 import android.content.Context;
 import android.net.Uri;
 import android.support.v4.content.CursorLoader;
-
 import java.util.ArrayList;
-
 import nl.littlerobots.cupboard.tools.provider.UriHelper;
 
 import static nl.qbusict.cupboard.CupboardFactory.cupboard;
 
-/**
+
+/** Clase para operar con el content provider y su bbdd
  * Created by Mat on 07/01/2017.
  */
 

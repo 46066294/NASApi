@@ -24,10 +24,11 @@ import java.util.ArrayList;
 
 import mysupercompany.nasapi.databinding.FragmentSuperBinding;
 
-
+/**
+ * Fragment principal de carga de fotos y operaciones con bbdd
+ */
 public class SuperFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
-    private ArrayList<Photo> items;
     FragmentSuperBinding binding;
     private String roverCar;
     private Integer sol;
@@ -60,7 +61,6 @@ public class SuperFragment extends Fragment implements LoaderManager.LoaderCallb
         dialog = new ProgressDialog(getContext());
         dialog.setMessage("Loading Mars Photos...");
 
-        //lvPhoto.setAdapter(adapter);
         binding.lvPhotos.setAdapter(adapter);
         //click en item para hacer la foto mas grande y visible
         binding.lvPhotos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -74,8 +74,6 @@ public class SuperFragment extends Fragment implements LoaderManager.LoaderCallb
         });
 
         getLoaderManager().initLoader(0, null, this);
-        int count = binding.lvPhotos.getChildCount();
-        Log.d("DEBUGCOUNT", String.valueOf(count));
 
         return view;
     }
@@ -132,15 +130,6 @@ public class SuperFragment extends Fragment implements LoaderManager.LoaderCallb
 
 
     private class FilterDataTask extends AsyncTask<Void, Void, Void> {
-        /*
-        @Override
-        protected void onPostExecute(ArrayList<Photo> photos) {
-            adapter.clear();
-            for (Photo photo : photos){
-                adapter.add(photo);
-            }
-        }
-        */
 
         @Override
         protected void onPreExecute() {
@@ -154,6 +143,7 @@ public class SuperFragment extends Fragment implements LoaderManager.LoaderCallb
             dialog.dismiss();
         }
 
+        //Async Task
         @Override
         protected Void doInBackground(Void... voids) {
 
@@ -163,14 +153,12 @@ public class SuperFragment extends Fragment implements LoaderManager.LoaderCallb
             camera = preferences.getString("select_camera", "navcam");
             Integer page = Integer.valueOf(preferences.getString("input_page", "1"));
 
-            Log.d("DEBUG", "Starting...");
+            Log.d("DEBUG", "Starting call...");
             //crida http a la Api
             ArrayList<Photo> result = checkFields(roverCar, sol, camera, page);
-            Log.d("DEBUG", "Ending...");
-            //Log.d("DEBUG", result != null ? result.toString() : null);
+            Log.d("DEBUG", "call End...");
 
-            if(result == null){//////////////////////////////////////////////////////////////
-
+            if(result == null){
                 return null;
             }
             else{
@@ -181,6 +169,7 @@ public class SuperFragment extends Fragment implements LoaderManager.LoaderCallb
             return null;
         }
 
+        //Llamada, Filtros de llamada y condiciones
         public ArrayList<Photo> checkFields(String roverCar, Integer sol, String camera, Integer page){
 
             if(((roverCar.equalsIgnoreCase("Curiosity") &&
@@ -195,13 +184,15 @@ public class SuperFragment extends Fragment implements LoaderManager.LoaderCallb
                             (sol <= maxSolSpirit) && sol >= 0))){
 
                 ArrayList<Photo> result = DataAccesObject.getPhotos(roverCar, sol, camera, page);
-                //ArrayList<Photo> result = DataAccesObject.getPhotos("curiosity", 1000, "MAST", 1);
 
                 Log.d("DEBUG", result != null ? result.toString() : null);
 
                 return result;
+                //DEBUG
+                //return DataAccesObject.getPhotos("curiosity", 1000, "MAST", 1);
             }
             else return DataAccesObject.getPhotos("curiosity", 1000, "MAST", 1);
+
         }//checkFields end
 
     }

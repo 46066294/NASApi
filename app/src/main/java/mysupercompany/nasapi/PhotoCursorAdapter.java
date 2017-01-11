@@ -32,19 +32,7 @@ public class PhotoCursorAdapter extends CupboardCursorAdapter<Photo> {
     @Override
     public void bindView(View view, Context context, Photo photo) {
         LvPhotosRowBinding binding = DataBindingUtil.getBinding(view);
-/*
-        binding.roverName.setText(photo.getRoverName());
-        binding.roverId.setText(photo.getRoverId().toString());
-        binding.sol.setText(photo.getSol().toString());
-        binding.camera.setText(photo.getRoverCam());
-        binding.status.setText(photo.getStatus());
-        binding.launchDate.setText(photo.getLaunchDate());
-        binding.landingDate.setText(photo.getLandingDate());
-        binding.maxDate.setText(photo.getMaxDate());
-        binding.maxSol.setText(photo.getMaxSol().toString());
-        binding.totalPhotos.setText(photo.getTotalPhotos().toString());
-        Glide.with(context).load(photo.getImageUrl()).into(binding.imageView);
-        */
+
         binding.roverName.setText("Rover Name: " + photo.getRoverName());
         binding.roverId.setText("Photo ID: " + photo.getRoverId().toString());
         binding.sol.setText("Mars Day: " + photo.getSol().toString());
@@ -55,6 +43,7 @@ public class PhotoCursorAdapter extends CupboardCursorAdapter<Photo> {
         binding.maxDate.setText("Max Date: " + photo.getMaxDate());
         binding.maxSol.setText("Last Day on Mars: " + photo.getMaxSol().toString());
         binding.totalPhotos.setText("Total Photos: " + photo.getTotalPhotos().toString());
+
         Glide.with(context).load(photo.getImageUrl()).into(binding.imageView);
 
     }

@@ -15,8 +15,6 @@ public class InfoRoverOppo extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Intent i = getIntent();
-
     }
 
 }

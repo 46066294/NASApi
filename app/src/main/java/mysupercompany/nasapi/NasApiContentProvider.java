@@ -5,6 +5,8 @@ import nl.littlerobots.cupboard.tools.provider.CupboardContentProvider;
 import static nl.qbusict.cupboard.CupboardFactory.cupboard;
 
 /**
+ * Clase para crear Content Provider
+ *
  * Created by Mat on 07/01/2017.
  */
 

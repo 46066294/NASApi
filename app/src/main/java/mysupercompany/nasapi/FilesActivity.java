@@ -1,9 +1,6 @@
 package mysupercompany.nasapi;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -18,6 +15,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
+/**
+ * Clase para guardar notas personales de usuario con funcion para guardar y cargar notas
+ */
 public class FilesActivity extends AppCompatActivity {
 
     private EditText textBox;
@@ -56,7 +56,7 @@ public class FilesActivity extends AppCompatActivity {
             osw.close();
 
             // Mostramos que se ha guardado
-            Toast.makeText(getBaseContext(), "Guardado", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getBaseContext(), "Saved", Toast.LENGTH_SHORT).show();
 
             textBox.setText("");
         }catch (IOException ex){
@@ -86,7 +86,7 @@ public class FilesActivity extends AppCompatActivity {
             textBox.setText(s);
 
             // Mostramos un Toast con el proceso completado
-            Toast.makeText(getBaseContext(), "Cargado", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getBaseContext(), "Loaded", Toast.LENGTH_SHORT).show();
 
             isr.close();
         }catch (IOException ex){
