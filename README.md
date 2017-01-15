@@ -10,7 +10,7 @@
 <p>The data used by the application is obtained from the API</p>
 <p>Https://api.nasa.gov/index.html</p>
 <p>Https://api.nasa.gov/api.html#MarsPhotos</p>
-<p>We can see photos from a total of 606588, spread among the 3 Rover vehicles. The following are the available chambers of each Rover:</p>
+<p>We can see photos from a total of 606588, spread among the 3 Rover vehicles. The following are the available fields of each Rover:</p>
 
 <table>
 		  <thead>
